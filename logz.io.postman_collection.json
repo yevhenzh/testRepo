@@ -1,0 +1,227 @@
+{
+	"info": {
+		"_postman_id": "e0499b6c-d1da-4084-bd3b-cfe5054d745d",
+		"name": "logz.io",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://api.logz.io/v2/alerts/",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "X-API-TOKEN",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "d0d99526-cfd2-4976-bfd3-ff6e5f09a883",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.logz.io/v2/alerts/664110",
+					"protocol": "https",
+					"host": [
+						"api",
+						"logz",
+						"io"
+					],
+					"path": [
+						"v2",
+						"alerts",
+						"664110"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get alert by id",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "X-API-TOKEN",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "d0d99526-cfd2-4976-bfd3-ff6e5f09a883",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.logz.io/v1/alerts/479316",
+					"protocol": "https",
+					"host": [
+						"api",
+						"logz",
+						"io"
+					],
+					"path": [
+						"v1",
+						"alerts",
+						"479316"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "triggered alerts",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "X-API-TOKEN",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "d0d99526-cfd2-4976-bfd3-ff6e5f09a883",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \t\"sortBy\": \"DATE\",\n      \t\"sortOrder\": \"DESC\",\n  \"tags\": [\n        \"walmart\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.logz.io/v1/alerts/triggered-alerts",
+					"protocol": "https",
+					"host": [
+						"api",
+						"logz",
+						"io"
+					],
+					"path": [
+						"v1",
+						"alerts",
+						"triggered-alerts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.logz.io/v1/search alerts",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "X-API-TOKEN",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "d0d99526-cfd2-4976-bfd3-ff6e5f09a883",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": {\n    \"bool\": {\n      \"must\": [\n      ],\n      \"filter\": [\n        {\n          \"match_phrase\": {\n            \"logzio-alert-definition-id\": {\n              \"query\": 665989\n            }\n          }\n        },\n        {\n          \"match_phrase\": {\n            \"type\": {\n              \"query\": \"logzio-alerts\"\n            }\n          }\n        },\n        {\n          \"range\": {\n            \"@timestamp\": {\n              \"gte\": \"now-2M\",\n              \"lte\": \"now\"\n            }\n          }\n        }\n      ],\n      \"should\": [],\n      \"must_not\": [\n      ]\n    }\n  }\n}\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.logz.io/v1/search/",
+					"protocol": "https",
+					"host": [
+						"api",
+						"logz",
+						"io"
+					],
+					"path": [
+						"v1",
+						"search",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.logz.io/v1/search Copy",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "X-API-TOKEN",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "d0d99526-cfd2-4976-bfd3-ff6e5f09a883",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": {\n    \"bool\": {\n      \"must\": [\n        {\n          \"query_string\": {\n            \"query\": \"process_name:\\\"Profile Upload Process\\\" AND level:ERROR AND \\\"Walmart\\\" AND NOT \\\"amazon\\\" AND NOT(\\\"Cannot upload unpublished item, Input id:\\\" OR \\\"Cannot upload item. item or base item not owned by you, Input id:\\\" OR \\\"Item not found, Input id:\\\" OR  \\\"Cannot upload variant item. Promote the provided base item\\\" OR \\\"name - Campaign name should be unique within an Advertiser\\\" OR \\\"AdGroup with ID  cannot be deleted as the campaign has been lived before\\\" OR \\\"Keyword cannot be archived as the campaign has been lived before\\\" OR \\\"Multiple request for same item id within ad group is not allowed.\\\" OR \\\"placement\\\" OR \\\"carousel\\\" OR \\\"Please set campaign status as 'extend' to resume a completed campaign\\\") AND NOT beat.hostname: (ecliwb7114 OR ecliwb3202 OR ecliwb3379 OR ecliwb3380 OR ecliwb3791 OR ecliwb3792 OR ecliwb3739 OR ecliwb4107 OR ecliwb4022 OR ecliwb4030 OR ecliwb4040 OR ecliwb4164 OR ecliwb4167 OR ecliwb5025 OR ecliwb5144 OR ecliwb6136 OR ecliwb6237 OR ecliwb7037 OR ecliwb7177 OR ecliwb7414 OR ecliwb3368 OR ecliwb7745 OR ecliwb8310 OR ecliwb9210 OR ecliwb9211 OR ecliwb4107 OR ecliwb8388 OR ecliwb8389 OR ecliwb3737)\\n\"\n          }\n        },\n        {\n          \"range\": {\n            \"@timestamp\": {\n              \"gte\": \"now-1d\",\n              \"lte\": \"now\"\n            }\n          }\n        }\n      ],\n      \"filter\": [\n      ],\n      \"should\": [],\n      \"must_not\": [\n        {\n          \"match_phrase\": {\n            \"beat.hostname\": {\n              \"query\": \"ecliwb3739\"\n            }\n          }\n        },\n        {\n          \"match_phrase\": {\n            \"beat.hostname\": {\n              \"query\": \"ecliwb3792\"\n            }\n          }\n        },\n        {\n          \"match_phrase\": {\n            \"beat.hostname\": {\n              \"query\": \"ecliwb3379\"\n            }\n          }\n        },\n        {\n          \"match_phrase\": {\n            \"beat.hostname\": {\n              \"query\": \"ecliwb7114\"\n            }\n          }\n        },\n        {\n          \"match_phrase\": {\n            \"beat.hostname\": {\n              \"query\": \"ecliwb3791\"\n            }\n          }\n        },\n        {\n          \"match_phrase\": {\n            \"beat.hostname\": {\n              \"query\": \"ecliwb3380\"\n            }\n          }\n        },\n        {\n          \"match_phrase\": {\n            \"beat.hostname\": {\n              \"query\": \"ecliwb3202\"\n            }\n          }\n        },\n        {\n          \"match_phrase\": {\n            \"beat.hostname\": {\n              \"query\": \"ecliwb8310\"\n            }\n          }\n        },\n        {\n          \"match_phrase\": {\n            \"beat.hostname\": {\n              \"query\": \"ecliwb8388\"\n            }\n          }\n        },\n        {\n          \"match_phrase\": {\n            \"beat.hostname\": {\n              \"query\": \"ecliwb8389\"\n            }\n          }\n        },\n        {\n          \"match_phrase\": {\n            \"beat.hostname\": {\n              \"query\": \"ecliwb8390\"\n            }\n          }\n        },\n        {\n          \"match_phrase\": {\n            \"beat.hostname\": {\n              \"query\": \"ecliwb8391\"\n            }\n          }\n        },\n        {\n          \"match_phrase\": {\n            \"beat.hostname\": {\n              \"query\": \"ecliwb8392\"\n            }\n          }\n        }\n      ]\n    }\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.logz.io/v1/search/",
+					"protocol": "https",
+					"host": [
+						"api",
+						"logz",
+						"io"
+					],
+					"path": [
+						"v1",
+						"search",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
